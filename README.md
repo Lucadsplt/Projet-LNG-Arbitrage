@@ -41,7 +41,7 @@ Projet-GNL/
 ## Statut des jalons
 
 - [x] Jalon 1 — squelette du repo + `src/config.py` (hypothèses métier)
-- [ ] Jalon 2 — calcul du netback + tests
+- [x] Jalon 2 — calcul du netback + tests
 - [ ] Jalon 3 — routing (jours de voyage, fret, boil-off par route)
 - [ ] Jalon 4 — prix TTF / Henry Hub
 - [ ] Jalon 5 — donnée physique GIE ALSI
