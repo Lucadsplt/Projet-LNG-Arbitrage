@@ -43,7 +43,7 @@ Projet-GNL/
 - [x] Jalon 1 — squelette du repo + `src/config.py` (hypothèses métier)
 - [x] Jalon 2 — calcul du netback + tests
 - [x] Jalon 3 — routing (jours de voyage, fret, boil-off par route)
-- [ ] Jalon 4 — prix TTF / Henry Hub
+- [x] Jalon 4 — prix TTF / Henry Hub
 - [ ] Jalon 5 — donnée physique GIE ALSI
 - [ ] Jalon 6 — modèle Excel
 - [ ] Jalon 7 — pont Python -> Excel

@@ -9,3 +9,6 @@ venv/
 
 # Fichiers Excel temporaires (verrous Office)
 ~$*.xlsx
+
+# Donnees de marche recuperees (changent a chaque run, pas versionnees)
+data/prices/*.csv
