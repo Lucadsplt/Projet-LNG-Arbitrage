@@ -43,6 +43,16 @@ def test_fetch_henry_hub_eia_sans_cle_renvoie_dataframe_vide(monkeypatch):
     assert resultat.empty
 
 
+def test_fetch_eur_usd_en_echec_renvoie_dataframe_vide(monkeypatch):
+    def yf_download_qui_echoue(*args, **kwargs):
+        raise RuntimeError("pas de reseau")
+
+    monkeypatch.setattr(data_prices.yf, "download", yf_download_qui_echoue)
+    resultat = data_prices.fetch_eur_usd()
+    assert resultat.empty
+    assert list(resultat.columns) == ["date", "eur_usd"]
+
+
 def test_fetch_henry_hub_bascule_sur_yfinance_si_eia_indisponible(monkeypatch):
     # EIA sans cle -> DataFrame vide -> fetch_henry_hub() doit basculer
     # sur le fallback yfinance. On remplace ce fallback par une fonction

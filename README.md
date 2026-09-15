@@ -47,7 +47,7 @@ Projet-GNL/
 - [x] Jalon 4 — prix TTF / Henry Hub
 - [x] Jalon 5 — donnée physique GIE ALSI
 - [x] Jalon 6 — modèle Excel
-- [ ] Jalon 7 — pont Python -> Excel
+- [x] Jalon 7 — pont Python -> Excel
 - [ ] Jalon 8 — graphes + note d'une page
 
 ## Hypothèses métier (Jalon 1)

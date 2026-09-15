@@ -22,6 +22,7 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data" / "prices"
 TICKERS = {
     "ttf": "TTF=F",
     "henry_hub": "NG=F",
+    "eur_usd": "EURUSD=X",
 }
 
 
@@ -78,6 +79,21 @@ def fetch_henry_hub_yfinance(period="3mo", interval="1d"):
         logger.warning("Echec de recuperation Henry Hub via yfinance : %s", erreur)
         return pd.DataFrame(columns=["date", "henry_hub_usd_mmbtu"])
     return _nettoyer_serie_yfinance(df_brut, "henry_hub_usd_mmbtu")
+
+
+def fetch_eur_usd(period="1mo", interval="1d"):
+    """
+    Taux de change EUR/USD via Yahoo Finance (ticker EURUSD=X). Sert a
+    convertir le TTF (cote en EUR/MWh) en $/MMBtu comparable au JKM -
+    c'est la 3e donnee "de marche, live et gratuite" du modele, avec le
+    TTF et le Henry Hub (voir README, "Fraicheur des hypotheses").
+    """
+    try:
+        df_brut = yf.download(TICKERS["eur_usd"], period=period, interval=interval, progress=False)
+    except Exception as erreur:
+        logger.warning("Echec de recuperation EUR/USD via yfinance : %s", erreur)
+        return pd.DataFrame(columns=["date", "eur_usd"])
+    return _nettoyer_serie_yfinance(df_brut, "eur_usd")
 
 
 def fetch_henry_hub_eia(api_key=None):

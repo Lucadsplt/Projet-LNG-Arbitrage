@@ -260,15 +260,18 @@ def _construire_feuille_sensibilite(wb, refs):
     return ws
 
 
-def construire_classeur():
+def construire_classeur(chemin_sortie=None):
+    chemin_sortie = chemin_sortie or CHEMIN_SORTIE
+
     wb = Workbook()
     refs = _construire_feuille_hypotheses(wb)
     _construire_feuille_netback(wb, refs)
     _construire_feuille_sensibilite(wb, refs)
 
-    CHEMIN_SORTIE.parent.mkdir(parents=True, exist_ok=True)
-    wb.save(CHEMIN_SORTIE)
-    return CHEMIN_SORTIE
+    chemin_sortie = Path(chemin_sortie)
+    chemin_sortie.parent.mkdir(parents=True, exist_ok=True)
+    wb.save(chemin_sortie)
+    return chemin_sortie
 
 
 if __name__ == "__main__":
