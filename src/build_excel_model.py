@@ -65,8 +65,8 @@ def _construire_feuille_hypotheses(wb):
         ("Jours de mer - Asie (Cap)", config.ROUTE_DAYS["asia_cape"]),
         ("Peage du canal de Panama ($)", config.PANAMA_TOLL_USD),
         ("Conversion MWh -> MMBtu", config.MWH_TO_MMBTU),
-        ("Frais de regaz - Europe ($/MMBtu)", 0.40),
-        ("Frais de regaz - Asie ($/MMBtu)", 0.50),
+        ("Frais de regaz - Europe ($/MMBtu)", config.REGAS_FEE_USD_MMBTU["europe"]),
+        ("Frais de regaz - Asie ($/MMBtu)", config.REGAS_FEE_USD_MMBTU["asia"]),
     ]
     ligne = 3
     for libelle, valeur in structurelles:
@@ -82,11 +82,13 @@ def _construire_feuille_hypotheses(wb):
 
     ligne = ligne_marche_titre + 2  # 17
     marche = [
+        # TTF et Henry Hub : simples valeurs de depart, ecrasees des le
+        # premier passage de src/update_excel.py (Jalon 7).
         ("TTF (EUR/MWh)", 32.00),
-        ("Taux de change EUR/USD", 1.08),
+        ("Taux de change EUR/USD", config.EUR_USD_RATE),
         ("Henry Hub ($/MMBtu)", 3.20),
-        ("JKM ($/MMBtu) - hypothese fragile, pas de source gratuite", 11.50),
-        ("Taux d'affretement ($/jour) - hypothese fragile", 65_000),
+        ("JKM ($/MMBtu) - hypothese fragile, pas de source gratuite", config.JKM_USD_MMBTU_DEFAUT),
+        ("Taux d'affretement ($/jour) - hypothese fragile", config.TAUX_AFFRETEMENT_USD_JOUR_DEFAUT),
     ]
     for libelle, valeur in marche:
         ws.cell(row=ligne, column=1, value=libelle)
@@ -202,8 +204,8 @@ def _construire_feuille_sensibilite(wb, refs):
     ws["B3"] = "Taux de fret \\ Ecart JKM-TTF"
     ws["B3"].font = ENTETE_FONT
 
-    ecarts = [-1.0, -0.5, 0.0, 0.5, 1.0, 1.5, 2.0]
-    taux_fret_valeurs = [30_000, 50_000, 70_000, 90_000, 110_000, 130_000, 150_000]
+    ecarts = config.SENSIBILITE_ECARTS_JKM_TTF
+    taux_fret_valeurs = config.SENSIBILITE_TAUX_FRET
 
     for i, ecart in enumerate(ecarts):
         col = 3 + i  # C..I

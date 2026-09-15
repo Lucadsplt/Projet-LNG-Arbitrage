@@ -23,8 +23,7 @@ Projet-GNL/
 │   ├── build_excel_model.py  # génère excel/modele_arbitrage.xlsx (Jalon 6)
 │   ├── update_excel.py       # pont Python -> Excel (Jalon 7)
 │   └── charts.py             # graphes de sortie (Jalon 8)
-├── tests/
-│   └── test_netback.py    # tests des fonctions de calcul (Jalon 2)
+├── tests/                 # un fichier de test par module de src/ (29 tests)
 ├── excel/
 │   └── modele_arbitrage.xlsx  # classeur de décision avec table de sensibilité (Jalon 6)
 ├── data/
@@ -34,10 +33,29 @@ Projet-GNL/
 │   └── note.md               # note d'une page (Jalon 8)
 ├── docs/
 │   └── Projet_GNL_Contexte_et_Explications.docx  # cahier des charges / contexte
+├── run_pipeline.py        # point d'entrée unique (Jalon 8)
 ├── requirements.txt
 ├── .env.example
 └── .gitignore
 ```
+
+## Lancer le projet en une commande
+
+```bash
+pip install -r requirements.txt
+cp .env.example .env   # optionnel : cles EIA / GIE, voir plus bas
+python run_pipeline.py
+```
+
+Ça enchaîne : récupération des derniers prix (TTF, Henry Hub) →
+mise à jour du classeur `excel/modele_arbitrage.xlsx` → régénération des
+4 graphes dans `outputs/charts/`. Le `.env` est optionnel : sans clé
+`GIE_API_KEY`, tout le reste fonctionne quand même — seul le graphe
+`gie_dashboard.png` devient un visuel "donnée indisponible" explicite
+plutôt qu'un échec silencieux. Sans clé `EIA_API_KEY`, le Henry Hub
+bascule automatiquement sur yfinance (voir Jalon 4).
+
+La note de synthèse est dans [`outputs/note.md`](outputs/note.md).
 
 ## Statut des jalons
 
@@ -48,7 +66,7 @@ Projet-GNL/
 - [x] Jalon 5 — donnée physique GIE ALSI
 - [x] Jalon 6 — modèle Excel
 - [x] Jalon 7 — pont Python -> Excel
-- [ ] Jalon 8 — graphes + note d'une page
+- [x] Jalon 8 — graphes + note d'une page
 
 ## Hypothèses métier (Jalon 1)
 
@@ -84,13 +102,3 @@ ces trois catégories, qui déterminent comment elle est tenue à jour :
 | **Données de marché live, gratuites** | TTF, Henry Hub, EUR/USD | Automatique : `data_prices.py` (Jalon 4) va chercher le dernier prix, `update_excel.py` (Jalon 7) le réinjecte dans le classeur qui se recalcule seul. |
 | **Hypothèses structurelles, stables sur des mois/années** | Tolling fee, multiplicateur feedgas, boil-off, taille cargaison, jours de route | Révisées ponctuellement dans `config.py` (ex. si un nouveau contrat de liquéfaction est annoncé), pas de flux temps réel nécessaire. |
 | **Paramètres de marché volatils, sans source gratuite** | JKM, taux d'affrètement ($/jour) | Pas d'automatisation possible (données Platts/Baltic Exchange payantes) : ce sont des **cellules d'entrée modifiables directement dans le classeur Excel** (Jalon 6), pas des constantes cachées dans le code. |
-
-## Lancer le projet
-
-À compléter au fil des jalons (instructions de lancement en une commande
-prévues au Jalon 8).
-
-```bash
-pip install -r requirements.txt
-cp .env.example .env  # puis renseigner les clés API
-```

@@ -64,3 +64,31 @@ EUR_USD_RATE = 1.08
 # 1 MWh = 3,412 MMBtu (conversion d'énergie). Sert à ramener le TTF,
 # coté en EUR/MWh, vers des $/MMBtu comparables au JKM.
 MWH_TO_MMBTU = 3.412
+
+
+# --- Frais de regazéification (par destination) -----------------------------
+
+# Tarif payé au terminal d'arrivée pour réinjecter le GNL dans le réseau,
+# propre à chaque destination. Fourchette typique observée en Europe/Asie.
+REGAS_FEE_USD_MMBTU = {
+    "europe": 0.40,
+    "asia": 0.50,
+}
+
+
+# --- Hypothèses de marché par défaut (fragiles, sans source gratuite) -------
+
+# JKM et taux d'affrètement n'ont pas de source gratuite fiable (voir
+# docstring plus haut) : ces valeurs par défaut servent de point de départ
+# au classeur Excel (Jalon 6) et aux graphes (Jalon 8), tant que tu ne les
+# as pas mises à jour toi-même depuis l'actualité.
+JKM_USD_MMBTU_DEFAUT = 11.50
+TAUX_AFFRETEMENT_USD_JOUR_DEFAUT = 65_000
+
+
+# --- Table de sensibilité (Jalons 6 et 8) -----------------------------------
+
+# Grille utilisée à la fois par le classeur Excel et par le graphe heatmap
+# du Jalon 8 : mêmes valeurs, un seul endroit où les changer.
+SENSIBILITE_ECARTS_JKM_TTF = [-1.0, -0.5, 0.0, 0.5, 1.0, 1.5, 2.0]
+SENSIBILITE_TAUX_FRET = [30_000, 50_000, 70_000, 90_000, 110_000, 130_000, 150_000]
