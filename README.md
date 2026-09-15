@@ -72,6 +72,18 @@ c'est la source de vérité, à ne jamais dupliquer ailleurs dans le code.
 $/jour). Ces deux paramètres seront isolés clairement et feront l'objet de
 la table de sensibilité au Jalon 6.
 
+## Fraîcheur des hypothèses : trois catégories, trois traitements
+
+Pour que le modèle (et le classeur Excel du Jalon 6) ne devienne pas
+obsolète en quelques semaines, chaque hypothèse est classée dans une de
+ces trois catégories, qui déterminent comment elle est tenue à jour :
+
+| Catégorie | Exemples | Mode de mise à jour |
+|---|---|---|
+| **Données de marché live, gratuites** | TTF, Henry Hub, EUR/USD | Automatique : `data_prices.py` (Jalon 4) va chercher le dernier prix, `update_excel.py` (Jalon 7) le réinjecte dans le classeur qui se recalcule seul. |
+| **Hypothèses structurelles, stables sur des mois/années** | Tolling fee, multiplicateur feedgas, boil-off, taille cargaison, jours de route | Révisées ponctuellement dans `config.py` (ex. si un nouveau contrat de liquéfaction est annoncé), pas de flux temps réel nécessaire. |
+| **Paramètres de marché volatils, sans source gratuite** | JKM, taux d'affrètement ($/jour) | Pas d'automatisation possible (données Platts/Baltic Exchange payantes) : ce sont des **cellules d'entrée modifiables directement dans le classeur Excel** (Jalon 6), pas des constantes cachées dans le code. |
+
 ## Lancer le projet
 
 À compléter au fil des jalons (instructions de lancement en une commande
