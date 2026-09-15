@@ -15,13 +15,14 @@ détaillé de chaque formule) : voir [`docs/Projet_GNL_Contexte_et_Explications.
 ```
 Projet-GNL/
 ├── src/
-│   ├── config.py          # hypothèses métier centralisées (Jalon 1)
-│   ├── netback.py         # calcul du netback + comparaison Europe/Asie (Jalon 2)
-│   ├── routing.py         # jours de voyage, fret, boil-off par route (Jalon 3)
-│   ├── data_prices.py     # récupération TTF / Henry Hub (Jalon 4)
-│   ├── data_gie.py        # send-out et stocks terminaux GNL (GIE ALSI) (Jalon 5)
-│   ├── update_excel.py    # pont Python -> Excel (Jalon 7)
-│   └── charts.py          # graphes de sortie (Jalon 8)
+│   ├── config.py             # hypothèses métier centralisées (Jalon 1)
+│   ├── netback.py            # calcul du netback + comparaison Europe/Asie (Jalon 2)
+│   ├── routing.py            # jours de voyage, fret, boil-off par route (Jalon 3)
+│   ├── data_prices.py        # récupération TTF / Henry Hub (Jalon 4)
+│   ├── data_gie.py           # send-out et stocks terminaux GNL (GIE ALSI) (Jalon 5)
+│   ├── build_excel_model.py  # génère excel/modele_arbitrage.xlsx (Jalon 6)
+│   ├── update_excel.py       # pont Python -> Excel (Jalon 7)
+│   └── charts.py             # graphes de sortie (Jalon 8)
 ├── tests/
 │   └── test_netback.py    # tests des fonctions de calcul (Jalon 2)
 ├── excel/
@@ -45,7 +46,7 @@ Projet-GNL/
 - [x] Jalon 3 — routing (jours de voyage, fret, boil-off par route)
 - [x] Jalon 4 — prix TTF / Henry Hub
 - [x] Jalon 5 — donnée physique GIE ALSI
-- [ ] Jalon 6 — modèle Excel
+- [x] Jalon 6 — modèle Excel
 - [ ] Jalon 7 — pont Python -> Excel
 - [ ] Jalon 8 — graphes + note d'une page
 
