@@ -57,6 +57,10 @@ bascule automatiquement sur yfinance (voir Jalon 4).
 
 La note de synthèse est dans [`outputs/note.md`](outputs/note.md).
 
+## Tableau de bord (snapshot)
+
+[`outputs/dashboard.html`](outputs/dashboard.html) est une page autonome (HTML/CSS/JS, sans dépendance) qui reprend les résultats de ce snapshot dans une mise en page façon BI : recommandation, netback détaillé par étape (waterfall), historique TTF/Henry Hub, et la table de sensibilité avec un point mobile. Les curseurs JKM et taux de fret sont interactifs — ils réimplémentent en JavaScript les mêmes formules que `src/netback.py` et `src/routing.py`, pour recalculer sans recharger. **Ce n'est pas un composant du pipeline** : c'est un instantané figé sur les données du jour où il a été généré, à régénérer manuellement si les données changent significativement.
+
 ## Statut des jalons
 
 - [x] Jalon 1 — squelette du repo + `src/config.py` (hypothèses métier)
