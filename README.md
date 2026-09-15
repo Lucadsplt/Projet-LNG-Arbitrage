@@ -1,5 +1,7 @@
 # Modèle d'arbitrage et de routing de cargaisons GNL
 
+**[Tableau de bord interactif](https://lucadsplt.github.io/Projet-LNG-Arbitrage/dashboard.html)** &middot; [page du projet](https://lucadsplt.github.io/Projet-LNG-Arbitrage/)
+
 Simulation de la décision qu'un desk GNL prend chaque jour : une cargaison
 chargée au Golfe du Mexique (type Sabine Pass) doit-elle partir vers
 l'Europe (prix TTF) ou vers l'Asie (prix JKM), une fois déduits tous les
@@ -59,7 +61,9 @@ La note de synthèse est dans [`outputs/note.md`](outputs/note.md).
 
 ## Tableau de bord (snapshot)
 
-[`outputs/dashboard.html`](outputs/dashboard.html) est une page autonome (HTML/CSS/JS, sans dépendance) qui reprend les résultats de ce snapshot dans une mise en page façon BI : recommandation, netback détaillé par étape (waterfall), historique TTF/Henry Hub, et la table de sensibilité avec un point mobile. Les curseurs JKM et taux de fret sont interactifs — ils réimplémentent en JavaScript les mêmes formules que `src/netback.py` et `src/routing.py`, pour recalculer sans recharger. **Ce n'est pas un composant du pipeline** : c'est un instantané figé sur les données du jour où il a été généré, à régénérer manuellement si les données changent significativement.
+**En ligne :** https://lucadsplt.github.io/Projet-LNG-Arbitrage/dashboard.html (servi par GitHub Pages depuis `docs/dashboard.html`, lien public, sans compte requis).
+
+Code source : [`outputs/dashboard.html`](outputs/dashboard.html) — une page autonome (HTML/CSS/JS, sans dépendance) qui reprend les résultats de ce snapshot dans une mise en page façon BI : recommandation, netback détaillé par étape (waterfall), historique TTF/Henry Hub, et la table de sensibilité avec un point mobile. Les curseurs JKM et taux de fret sont interactifs — ils réimplémentent en JavaScript les mêmes formules que `src/netback.py` et `src/routing.py`, pour recalculer sans recharger. **Ce n'est pas un composant du pipeline** : c'est un instantané figé sur les données du jour où il a été généré, à régénérer manuellement si les données changent significativement (les deux copies, `outputs/` et `docs/`, doivent alors être remises à jour ensemble).
 
 ## Statut des jalons
 
