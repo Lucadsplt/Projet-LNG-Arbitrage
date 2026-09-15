@@ -44,7 +44,7 @@ Projet-GNL/
 - [x] Jalon 2 — calcul du netback + tests
 - [x] Jalon 3 — routing (jours de voyage, fret, boil-off par route)
 - [x] Jalon 4 — prix TTF / Henry Hub
-- [ ] Jalon 5 — donnée physique GIE ALSI
+- [x] Jalon 5 — donnée physique GIE ALSI
 - [ ] Jalon 6 — modèle Excel
 - [ ] Jalon 7 — pont Python -> Excel
 - [ ] Jalon 8 — graphes + note d'une page
